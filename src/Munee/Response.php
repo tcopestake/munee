@@ -120,7 +120,7 @@ class Response
          */
         if (@ini_get('zlib.output_compression')) {
             $ret = $content;
-        } else if (! $ret = ob_gzhandler($content, PHP_OUTPUT_HANDLER_START | PHP_OUTPUT_HANDLER_END)) {
+        } else if (ob_get_level() || ! $ret = ob_gzhandler($content, PHP_OUTPUT_HANDLER_START | PHP_OUTPUT_HANDLER_END)) {
             $ret = $content;
         }
 
